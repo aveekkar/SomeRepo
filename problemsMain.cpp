@@ -1,19 +1,17 @@
 #include <stdio.h>
+#include <iostream>
 #include <vector>
 #include <string>
 #include <map>
 #include <sstream>
+#include <unordered_map>
+#include <BSTIterator.hpp>
+
+#include "TreeNode.h"
+
 using namespace std;
 
-struct TreeNode
-{
-	int val;
-	TreeNode* left;
-	TreeNode* right;
-	TreeNode(int x) : val(x), left(NULL), right(NULL)
-	{
-	}
-};
+
 
 vector<vector<int> > pathSum(TreeNode* root, int sum);
 void pathSumRecurse(TreeNode* root, int sum, vector<vector<int> >& result, vector<int>& running);
@@ -48,6 +46,13 @@ int main(int argc, char **argv)
 	
 	string dnaSequence = "AAAAAAAAAAA";
 	findRepeatedDnaSequences(dnaSequence);
+	
+	//Iterator for BT
+	BSTIterator iter(&root);
+	while(iter.hasNext())
+	{
+		std::cout<<iter.next()<<endl;
+	}
 	getchar();
 	return 0;
 }

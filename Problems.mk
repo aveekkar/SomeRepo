@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Rik
-Date                   :=05/02/15
+Date                   :=05/03/15
 CodeLitePath           :="/home/rik/.codelite"
 LinkerName             :=/usr/bin/x86_64-linux-gnu-g++ 
 SharedObjectLinkerName :=/usr/bin/x86_64-linux-gnu-g++ -shared -fPIC
@@ -50,7 +50,7 @@ LibPath                := $(LibraryPathSwitch).
 AR       := /usr/bin/x86_64-linux-gnu-ar rcu
 CXX      := /usr/bin/x86_64-linux-gnu-g++ 
 CC       := /usr/bin/x86_64-linux-gnu-gcc 
-CXXFLAGS :=  -g -O0 -Wall $(Preprocessors)
+CXXFLAGS :=  -g -O0 -std=c++11 -Wall $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := /usr/bin/x86_64-linux-gnu-as 
@@ -60,7 +60,7 @@ AS       := /usr/bin/x86_64-linux-gnu-as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/problemsMain.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/problemsMain.cpp$(ObjectSuffix) $(IntermediateDirectory)/BSTIterator.cpp$(ObjectSuffix) 
 
 
 
@@ -94,6 +94,14 @@ $(IntermediateDirectory)/problemsMain.cpp$(DependSuffix): problemsMain.cpp
 
 $(IntermediateDirectory)/problemsMain.cpp$(PreprocessSuffix): problemsMain.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/problemsMain.cpp$(PreprocessSuffix) "problemsMain.cpp"
+
+$(IntermediateDirectory)/BSTIterator.cpp$(ObjectSuffix): BSTIterator.cpp $(IntermediateDirectory)/BSTIterator.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/rik/STUFF/workspace/Test/problems/BSTIterator.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/BSTIterator.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/BSTIterator.cpp$(DependSuffix): BSTIterator.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/BSTIterator.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/BSTIterator.cpp$(DependSuffix) -MM "BSTIterator.cpp"
+
+$(IntermediateDirectory)/BSTIterator.cpp$(PreprocessSuffix): BSTIterator.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/BSTIterator.cpp$(PreprocessSuffix) "BSTIterator.cpp"
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

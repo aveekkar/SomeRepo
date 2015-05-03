@@ -1,1 +1,1 @@
-./Debug/problemsMain.cpp.o
+./Debug/problemsMain.cpp.o ./Debug/BSTIterator.cpp.o
