@@ -23,7 +23,8 @@ size_t hashFunction(const string& str);
 int to_int(char const *s);
 void printMatrix(const boost::numeric::ublas::matrix<int>& inpMatrix);
 int maximumGap(const vector<int>& nums);
-bool searchMatrix(vector<vector<int>>& matrix, int target);
+template<typename T>
+bool searchMatrix(vector<vector<T>>& matrix, T target);
 template<typename T>
 int binarySearchVector(const vector<T>& vec, int start, int end, T key);
 template<typename T>
@@ -91,7 +92,7 @@ int main(int argc, char **argv)
     matrixToSearch.push_back(searchVector);
     matrixToSearch.push_back(searchVector1);
     cout<<"does key "<<key<<" exist in matrix?"<<endl;
-    cout<<"Ans: "<<searchMatrix(matrixToSearch, key)<<endl;
+    cout<<"Ans: "<<searchMatrix<int>(matrixToSearch, key)<<endl;
     getchar();
     return 0;
 }
@@ -321,8 +322,8 @@ int maximumGap(const vector<int>& nums)
     return maxGap;
 }
 
-
-bool searchMatrix(vector<vector<int> >& matrix, int target)
+template<typename T>
+bool searchMatrix(vector<vector<T> >& matrix, T target)
 {
     if(matrix.size() == 0)
     {
